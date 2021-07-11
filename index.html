@@ -45,10 +45,10 @@
     <g-button icon="setting" icon-position="right">
         我right
     </g-button>
-    <g-button icon="setting" >
+    <g-button icon="setting" :loading="true">
         wanwanui-left
     </g-button>
-    <g-button>
+    <g-button :loading="loading1" @click="loading1 = !loading1">
         我爱UI
     </g-button>
     <g-icon name="download"></g-icon>
