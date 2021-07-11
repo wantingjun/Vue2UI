@@ -1,0 +1,29 @@
+{
+  "name": "gulu",
+  "version": "0.0.1",
+  "description": "这是一个UI框架",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue",
+    "ui"
+  ],
+  "author": "frankfang",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^2.5.16",
+    "vue-hot-reload-api": "^2.3.0"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^2.0.0",
+    "node-sass": "^4.9.0",
+    "parcel-bundler": "^1.12.5",
+    "sass": "^1.35.2",
+    "vue-template-compiler": "^2.5.16"
+  },
+  "alias": {
+    "vue": "./node_modules/vue/dist/vue.common.js"
+  }
+}
