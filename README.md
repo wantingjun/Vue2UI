@@ -1,12 +1,9 @@
-# 轱辘 - 一个 Vue UI 组件
+## 介绍
 
-作者：我
-
-
-## 安装
-
-使用本框架前，请在 CSS 中开启 border-box
+## 开始使用
+## 文档
+## 持续继承
 
 ```
-*{box-sizing: border-box;}
+npx parcel index.html --no-cache
 ```
