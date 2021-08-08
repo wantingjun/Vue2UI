@@ -12,6 +12,7 @@
   import Icon from './icon'
   // Vue.component('g-icon',Icon)
   export default {
+    name:'gu-button',
    // props: ['icon', 'iconPosition']
     components: {
       'g-icon':Icon //g-icon对应Icon
