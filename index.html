@@ -61,6 +61,9 @@
         <g-input value="disabled" :disabled="true">111</g-input>
         <g-input value="readonly" :readonly="true">111</g-input>
         <g-input value="error" error="error" >111</g-input>
+        <g-input v-model="message"></g-input>
+        <p>{{message}}</p>
+        <button @click="message+=1">+1</button>
     </div>
 
     <div id="test"></div>
