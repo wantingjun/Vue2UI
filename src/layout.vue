@@ -14,7 +14,7 @@
             }
         },
         mounted(){
-            console.log(this.$children)
+           //  console.log(this.$children)
             this.$children.forEach(vm=>{
                 if(vm.$options.name === 'gSider'){
                     this.layoutClass.hasSider = true
