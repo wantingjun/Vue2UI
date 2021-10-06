@@ -40,6 +40,7 @@ new Vue({
     //   inputElement.dispatchEvent(event)
     //   console.log('hi')
     // },3000)
+    this.$toast('我是 message')
 
   },
 
@@ -47,7 +48,7 @@ new Vue({
     inputChange (e) {
       console.log(e)
     },
-    showToast(){
+    showToast(toast){
       this.$toast('我是 message')
     }
   }
