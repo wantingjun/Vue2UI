@@ -12,6 +12,7 @@ import Layout from './layout'
 import Sider from './sider'
 import Toast from './toast'
 import plugin from './plugin'
+import popover from './popover'
 
 Vue.component('g-button', Button)
 Vue.component('g-icon', Icon)
@@ -25,6 +26,7 @@ Vue.component('g-sider', Sider)
 Vue.component('g-header', Header)
 Vue.component('g-content', Content)
 Vue.component('g-toast', Toast)
+Vue.component('g-popover', popover)
 Vue.use(plugin)
 
 new Vue({
