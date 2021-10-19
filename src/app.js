@@ -42,7 +42,7 @@ new Vue({
     //   inputElement.dispatchEvent(event)
     //   console.log('hi')
     // },3000)
-    this.$toast('我是 message')
+    // this.$toast('我是 message')
 
   },
 

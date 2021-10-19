@@ -98,7 +98,19 @@
 </div>
 ```
 ### 问题
-### 加.stop阻止冒泡
-### 点content不隐藏
-* 在content上加.stop阻止冒泡，这样，点content就不会隐藏； 
-* 只有点外面的时候才会隐藏
+* 在组件里增加.stop虽然可以阻止冒泡，但是同时也会打破用户的点击事件，比如用户调用组件时，在外面增加了一个点击事件，就不会被触发
+* 所以在组件上增加.stop的方法还是不对
+
+### content-overflow hidden 隐藏看不见的问题
+* 因为`content-wrapper`在里面，被hidden了，所以肯定看不见。
+1. 如果使用ref加载content-wrapper上，一开始看不到ref。由于v-if一开始是false，所以看不到，可以改用`v-show`
+2. 移动元素到document，这时只影响元素的位置，不影响之前做的功能。这样他就不会被上面的div遮住
+* 比如点击按钮、content和document的消失与出现。
+3. 更改刚才移动位置的content-wrapper
+* 由于slot不支持ref，可以在<slot>外面加一层<span>
+4. getBoundingClientRect()方法返回元素的大小及其相对于视口的位置
+5. css加了scoped的话，可能会无效，因为scoped限制，只作用于当前组件和.popover里面，所以要把conytent-wrappaer移出去
+6. 总结：
+* 先把content的div移动到body里
+* 获取按钮的位置
+* 把body中的content的div放到按钮的上面去

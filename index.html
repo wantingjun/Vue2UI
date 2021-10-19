@@ -57,14 +57,15 @@
         height:100px;
     }
 </style>
-<div id="app" style="padding-top:100px;padding-left: 100px">
+<div id="app" style="padding-top:100px;padding-left: 100px;border:1px solid red">
+    <div style="overflow: hidden;border:1px solid green">
     <g-popover>
         <template slot="content">
             <div>popover content</div>
         </template>
         <button>点我popover</button>
     </g-popover>
-
+    </div>
 <!--    <button @click="showToast">click me </button>-->
 
 <!--    <g-layout style="height: 100vh;">-->
