@@ -1,6 +1,6 @@
 <template>
-  <div class="popover" @click="xxx">
-    <div class="content-wrapper"  v-if="visible">
+  <div class="popover" @click.stop="xxx">
+    <div class="content-wrapper"  v-if="visible"  @click.stop>
       <slot name="content"></slot>
     </div>
     <slot ></slot>
@@ -18,6 +18,23 @@ export default {
   methods:{
     xxx(){
       this.visible=!this.visible
+      console.log('切换visible')
+      if(this.visible===true){
+        setTimeout(()=>{
+          console.log('新增监听器 eventHandler')
+          let eventHandler =()=>{
+            console.log('点击关闭')
+            this.visible =false
+            console.log('document隐藏popover')
+            document.removeEventListener('click',eventHandler) // 移除x
+            console.log('删除监听器')
+          }
+          document.addEventListener("click",eventHandler) // 解决this错误的问题
+        },1000)
+
+      } else{
+        console.log('组件自身隐藏 popover')
+      }
     }
   }
 }
