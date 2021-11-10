@@ -30,8 +30,8 @@ export default {
           document.body.appendChild(this.$refs.contentWrapper) // 移走这个元素，增加到document里
           let {width,height,top,left} = this.$refs.triggerWrapper.getBoundingClientRect()// 方法返回元素的大小及其相对于视口的位置
           console.log(width,height,top,left)
-          this.$refs.contentWrapper.style.left = left+'px'
-          this.$refs.contentWrapper.style.top = top+'px'
+          this.$refs.contentWrapper.style.left = left+window.scrollX+'px'
+          this.$refs.contentWrapper.style.top = top+window.scrollY+'px'
           console.log('新增监听器 eventHandler')
           let eventHandler =()=>{
             console.log('点击关闭')

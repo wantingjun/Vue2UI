@@ -101,7 +101,7 @@
 * 在组件里增加.stop虽然可以阻止冒泡，但是同时也会打破用户的点击事件，比如用户调用组件时，在外面增加了一个点击事件，就不会被触发
 * 所以在组件上增加.stop的方法还是不对
 
-### content-overflow hidden 隐藏看不见的问题
+### content可能被挡住看不见的问题
 * 因为`content-wrapper`在里面，被hidden了，所以肯定看不见。
 1. 如果使用ref加载content-wrapper上，一开始看不到ref。由于v-if一开始是false，所以看不到，可以改用`v-show`
 2. 移动元素到document，这时只影响元素的位置，不影响之前做的功能。这样他就不会被上面的div遮住
@@ -114,3 +114,18 @@
 * 先把content的div移动到body里
 * 获取按钮的位置
 * 把body中的content的div放到按钮的上面去
+### 还存在的问题：
+* 如果在当前div上面再加一个div
+```html
+<div class="test" style="border:1px solid blue;height:1000px;"></div>
+<div id="app" style="padding-top:100px;padding-left: 100px;border:1px solid red"></div>
+```
+* 这个时候点击popover的按钮。上面的提示框会出现在很上方。
+1. 因为getBoundingClientRect是相对于视口位置的，但是绝对定位是相对于body元素的
+2. 解决方法：增加scrollY和scrollX的距离
+ ![IaTBB8.png](https://z3.ax1x.com/2021/11/10/IaTBB8.png)
+3. 有的浏览器会有兼容性的问题。搜索“元素相对于整个页面的top或者left”
+```html
+   this.$refs.contentWrapper.style.left = left+window.scrollX+'px'
+   this.$refs.contentWrapper.style.top = top+window.scrollY+'px'
+```
