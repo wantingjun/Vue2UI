@@ -129,3 +129,5 @@
    this.$refs.contentWrapper.style.left = left+window.scrollX+'px'
    this.$refs.contentWrapper.style.top = top+window.scrollY+'px'
 ```
+### 当click popover的时候判断用户点击的是按钮还是弹出层
+* 怎判断用户点击的是哪里？
