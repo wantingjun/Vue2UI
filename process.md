@@ -130,4 +130,31 @@
    this.$refs.contentWrapper.style.top = top+window.scrollY+'px'
 ```
 ### 当click popover的时候判断用户点击的是按钮还是弹出层
-* 怎判断用户点击的是哪里？
+如果点击按钮，就切换弹出层是否现实，如果点击的是弹出层，就什么都不做，如果点外面，也关闭弹出框
+#### 问题：怎判断用户点击的是哪里？
+1. 点击的时候会传入一个event参数，有一个target参数
+```
+this.$refs.triggerWrapper.contains(event.target)
+```
+通过这个判断，是否在哪一层
+2.  不能用阻止冒泡的方式，
+ ```
+listenToDocument(){
+      let eventHandler =(e)=>{
+        console.log(e.target)
+        if(this.$refs.contentWrapper.contains(e.target)){ // 如果在contentWrapper（弹出框里点击），就什么也不做
+          console.log("contentWrapper-弹出层")
+        } else{ // 如果点击的不是内容区域关闭
+          this.visible =false
+          document.removeEventListener('click',eventHandler) // 移除x
+          console.log("关闭")
+        }
+      }
+      document.addEventListener("click",eventHandler) // 解决this错误的问题
+    },
+```
+#### 总结问题
+1. overflow：hidden -》body.appendChild
+2. 关闭重复->分开，document只管外面，popover只管里面
+3. 忘了取消肩痛document -》 收拢close
+
