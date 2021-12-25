@@ -156,5 +156,40 @@ listenToDocument(){
 #### 总结问题
 1. overflow：hidden -》body.appendChild
 2. 关闭重复->分开，document只管外面，popover只管里面
-3. 忘了取消肩痛document -》 收拢close
-
+3. 忘了取消监听document -》 收拢close
+### 样式问题
+* 加一个三角形
+1。 做一个三角形
+```css
+& ::before{
+    content:"";
+    display:block;
+    border:10px solid red;
+    border-top-color:black;
+    border-bottom-color:transparent;
+    border-left-color:transparent;
+    border-right-color:transparent;
+    width:0;
+    height:0;
+    position:absolute;
+    top:100%;
+    left:10px;
+  }
+  & ::after{
+    content:"";
+    display:block;
+    border:10px solid red;
+    border-top-color:white;
+    border-bottom-color:transparent;
+    border-left-color:transparent;
+    border-right-color:transparent;
+    width:0;
+    height:0;
+    position:absolute;
+    top:calc(100% - 1px);
+    left:10px;
+  }
+```
+2. 设置一个默认最大宽度
+* 20em
+* 自动换行
