@@ -1,6 +1,6 @@
 <template>
   <div class="popover" @click="onClick" ref ="popover">
-    <div class="content-wrapper" ref="contentWrapper" v-if="visible">
+    <div class="content-wrapper" ref="contentWrapper" :class="`position-${position}`" v-if="visible">
       <slot name="content"></slot>
     </div>
     <span ref="triggerWrapper" style="display:inline-block">
@@ -18,15 +18,41 @@ export default {
       visible:false
     }
   },
+  props:{
+    position:{
+      type:String,
+      default:'top',
+      validator(value){
+        return ['top','bottom','left','right'].indexOf(value) >=0
+      }
+    }
+  },
   mounted(){
    // console.log(this.$refs.triggerWrapper)
   },
   methods:{
     positionContent(){ // 定位内容
-      document.body.appendChild(this.$refs.contentWrapper) // 移走这个元素，增加到document里
-      let {width,height,top,left} = this.$refs.triggerWrapper.getBoundingClientRect()// 方法返回元素的大小及其相对于视口的位置
-      this.$refs.contentWrapper.style.left = left+window.scrollX+'px'
-      this.$refs.contentWrapper.style.top = top+window.scrollY+'px'
+      const {contentWrapper,triggerWrapper} = this.$refs
+      document.body.appendChild(contentWrapper) // 移走这个元素，增加到document里
+      let {width,height,top,left} = triggerWrapper.getBoundingClientRect()// 方法返回元素的大小及其相对于视口的位置 , 按钮的高度宽度，顶部左侧的距离
+      if(this.position == 'top'){
+        contentWrapper.style.left = left+window.scrollX+'px'
+        contentWrapper.style.top = top+window.scrollY+'px'
+      } else if(this.position == 'bottom'){
+        contentWrapper.style.left = left+window.scrollX+'px'
+        contentWrapper.style.top = top+height+window.scrollY+'px'
+      } else if(this.position == 'left'){
+       contentWrapper.style.left = left+window.scrollX+'px'
+        let {height:height2} = contentWrapper.getBoundingClientRect() // 弹出按钮的高度
+        contentWrapper.style.top = top + window.scrollY + (height - height2)/2 +'px' // 按钮的高度和弹出框的高度差除2
+      } else if(this.position == 'right'){
+        contentWrapper.style.left = left+window.scrollX+width+'px'
+        contentWrapper.style.top = top+window.scrollY+'px'
+        let {height:height2} = contentWrapper.getBoundingClientRect() // 弹出按钮的高度
+        contentWrapper.style.top = top + window.scrollY + (height - height2)/2 +'px' // 按钮的高度和弹出框的高度差除2
+
+      }
+
     },
     onClickDocument(e){ //处理document的点击事件
         if(this.$refs.popover &&
@@ -77,8 +103,6 @@ export default {
   border-radius: $border-radius;
   filter:drop-shadow(0 0 1px rgba(0,0,0,0.5));
   background:white;
-  transform: translateY(-100%);
-  margin-top:-10px;
   padding: .5em 1em;
   max-width:20em;// 最大宽度
   word-break:break-all; //自动换行
@@ -89,15 +113,66 @@ export default {
     width:0;
     height:0;
     position:absolute;
-    left:10px;
   }
-  & ::before{
-    border-top-color:black;
-    top:100%;
+  &.position-top{
+    transform: translateY(-100%);
+    margin-top:-10px;
+    & ::before, & ::after{
+      left:10px;
+    }
+    & ::before{
+      border-top-color:black;
+      top:100%;
+    }
+    & ::after{
+      border-top-color:white;
+      top:calc(100% - 1px);
+    }
   }
-  & ::after{
-    border-top-color:white;
-    top:calc(100% - 1px);
+  &.position-bottom{
+    margin-top:10px;
+    & ::before, & ::after{
+      left:10px;
+    }
+    & ::before{
+      border-bottom-color:black;
+      bottom:100%;
+    }
+    & ::after{
+      border-bottom-color:white;
+      bottom:calc(100% - 1px);
+    }
+  }
+  &.position-left{
+    transform: translateX(-100%);
+    margin-left:-10px;
+    & ::before, & ::after{
+      top:50%;
+      transform :translateY(-50%);
+    }
+    & ::before{
+      border-left-color:black;
+      left:100%;
+    }
+    & ::after{
+      border-left-color:white;
+      left:calc(100% - 1px);
+    }
+  }
+  &.position-right{
+    margin-left:10px;
+    & ::before, & ::after{
+      top:50%;
+      transform :translateY(-50%);
+    }
+    & ::before{
+      border-right-color:black;
+      right:100%;
+    }
+    & ::after{
+      border-right-color:white;
+      right:calc(100% - 1px);
+    }
   }
 }
 
