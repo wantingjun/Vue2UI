@@ -216,3 +216,5 @@ mounted () {
 2. 在destory的时候，删除监听
 ### 一个bug： hover有时候会都抖动
 * 因为hover的箭头问题
+### scoped-slot:缇娜家插槽的close api
+1。 把组件内部的东西暴露给插槽，使用scope-slot。这样富组件就可以用子组件（插槽）的东西了
