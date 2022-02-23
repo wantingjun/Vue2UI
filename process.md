@@ -193,3 +193,26 @@ listenToDocument(){
 2. 设置一个默认最大宽度
 * 20em
 * 自动换行
+### 两种驱动方式
+在mounted里，判断是click还是hover
+```angular2html
+mounted () {
+      if (this.trigger === 'click') {
+        this.$refs.popover.addEventListener('click', this.onClick)
+      } else {
+        this.$refs.popover.addEventListener('mouseenter', this.open)
+        this.$refs.popover.addEventListener('mouseleave', this.close)
+      }
+    },
+    destroyed () {
+      if (this.trigger === 'click') {
+        this.$refs.popover.removeEventListener('click', this.onClick)
+      } else {
+        this.$refs.popover.removeEventListener('mouseenter', this.open)
+        this.$refs.popover.removeEventListener('mouseleave', this.close)
+      }
+    },
+```
+2. 在destory的时候，删除监听
+### 一个bug： hover有时候会都抖动
+* 因为hover的箭头问题
