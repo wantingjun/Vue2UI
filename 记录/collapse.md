@@ -43,3 +43,6 @@
     </div>
   </div>
 ```
+### single选项
+1。 使用事件总线eventBus
+2. 使用single设置是否设置单个打开
