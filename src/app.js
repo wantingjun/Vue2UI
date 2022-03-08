@@ -13,6 +13,9 @@ import Sider from './sider'
 import Toast from './toast'
 import plugin from './plugin'
 import popover from './popover'
+import Collapse from './collapse'
+import CollapseItem from './collapse-item'
+
 
 Vue.component('g-button', Button)
 Vue.component('g-icon', Icon)
@@ -27,6 +30,9 @@ Vue.component('g-header', Header)
 Vue.component('g-content', Content)
 Vue.component('g-toast', Toast)
 Vue.component('g-popover', popover)
+Vue.component('g-collapse', Collapse)
+Vue.component('g-collapse-item', CollapseItem)
+
 Vue.use(plugin)
 
 new Vue({
