@@ -57,7 +57,7 @@
 * 如果增加的话，就增加selected的item的数组。然后告诉collapse-item最新的需要打开的item。
 * 特点：单项数据流，更新只在一边做。由父组件触发打开哪个，子组件等父组件告诉他，应该展开哪个。
 * single的话，selected只保留最新点击的那个item
-```js
+```js 
     mounted () {
     // 初始状态就通知把selected的item选中
       this.eventBus.$emit('update:selected', this.selected)
