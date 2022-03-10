@@ -5,9 +5,7 @@
     <g-button :loading="true">默认按钮</g-button>
     <g-button disabled>默认按钮</g-button>
 
-    <pre>
-    <code>{{content}}</code>
-    </pre>
+    <pre><code>{{content}}</code></pre>
   </div>
 </template>
 <script>
